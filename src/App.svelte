@@ -8,17 +8,24 @@
   let isDarkMode = false;
   let isLoading = false;
 
-  async function loadMessages() {
-    // You can make an HTTP request here to load initial messages from the server if needed
-  }
+  // Load messages from local storage when the component mounts
+  onMount(() => {
+    const storedMessages = localStorage.getItem('messages');
+    if (storedMessages) {
+      messages = JSON.parse(storedMessages);
+      messageCount.set(messages.length);
+    }
+  });
 
-  async function addMessage(message) {
-    // You can make an HTTP request here to send the new message to the server if needed
+  // Save messages to local storage after updating
+  afterUpdate(() => {
+    localStorage.setItem('messages', JSON.stringify(messages));
+  });
+
+  function addMessage(message) {
     messages = [...messages, message];
     messageCount.update(n => n + 1); // Increment total message count
   }
-
-  onMount(loadMessages);
 
   function handleSubmit(event) {
     event.preventDefault();
@@ -44,8 +51,7 @@
     if (scrollTop + clientHeight >= scrollHeight - 5 && !isLoading) {
       isLoading = true;
       setTimeout(() => {
-      
-        addMessage(newMessage);
+        addMessage("New message");
         isLoading = false;
       }, 1000);
     }
@@ -115,6 +121,7 @@
     margin-right: 8px;
   }
 </style>
+
 
 
 
