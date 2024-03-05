@@ -8,7 +8,7 @@
   let isDarkMode = false;
   let isLoading = false;
 
-  // Load messages from local storage when the component mounts
+ 
   onMount(() => {
     const storedMessages = localStorage.getItem('messages');
     if (storedMessages) {
@@ -17,7 +17,7 @@
     }
   });
 
-  // Save messages to local storage after updating
+
   afterUpdate(() => {
     localStorage.setItem('messages', JSON.stringify(messages));
   });
@@ -51,7 +51,7 @@
     if (scrollTop + clientHeight >= scrollHeight - 5 && !isLoading) {
       isLoading = true;
       setTimeout(() => {
-        addMessage("New message");
+        addMessage("New message"); // Example Demo Message to show Scrolling
         isLoading = false;
       }, 1000);
     }
