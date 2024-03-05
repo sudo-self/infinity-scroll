@@ -1,7 +1,7 @@
 <script>
   export let todo;
 
-  // Function to generate a random RGB color
+ 
   function getRandomColor() {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
@@ -9,10 +9,10 @@
     return `rgb(${r},${g},${b})`;
   }
 
-  // Generate a random background color for each bubble
+ 
   let bubbleColor = getRandomColor();
 
-  // Toggle between light and dark mode
+  
   let isDarkMode = false;
 
   function toggleDarkMode() {
